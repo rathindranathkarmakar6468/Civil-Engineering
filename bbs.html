@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>BBS Calculator - Civil Engineering Tools</title>
+<title>Professional BBS Calculator</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -14,132 +14,209 @@
 <body>
 
 <header>
-    <h1>📏 Bar Bending Schedule (BBS) Calculator</h1>
-    <p>Calculate reinforcement steel length, weight and cost</p>
+<h1>📏 Professional Bar Bending Schedule (BBS)</h1>
+<p>Civil Engineering Reinforcement Steel Calculator</p>
 </header>
 
 
 <nav>
-    <a href="index.html">Home</a>
-    <a href="bbs.html">BBS</a>
-    <a href="cost.html">Cost Estimation</a>
+<a href="index.html">Home</a>
+<a href="bbs.html">BBS</a>
+<a href="cost.html">Cost Estimation</a>
 </nav>
+
 
 
 <div class="container">
 
+
 <div class="calculator">
 
-<h2>BBS Input Details</h2>
+
+<h2>Project Details</h2>
 
 
 <div class="form-group">
-<label>Bar Diameter (mm)</label>
+<label>Project Name</label>
+<input type="text" id="projectName"
+placeholder="Enter project name">
+</div>
 
-<select id="diameter">
 
-<option value="">Select Diameter</option>
-<option value="6">6 mm</option>
-<option value="8">8 mm</option>
-<option value="10">10 mm</option>
-<option value="12">12 mm</option>
-<option value="16">16 mm</option>
-<option value="20">20 mm</option>
-<option value="25">25 mm</option>
-<option value="32">32 mm</option>
+<div class="form-group">
+<label>Engineer Name</label>
+<input type="text" id="engineerName"
+placeholder="Enter engineer name">
+</div>
+
+
+
+<div class="form-group">
+<label>Date</label>
+<input type="date" id="bbsDate">
+</div>
+
+
+</div>
+
+
+
+<div class="calculator" style="margin-top:30px">
+
+
+<h2>BBS Entry</h2>
+
+
+<table id="bbsTable">
+
+
+<tr>
+
+<th>Bar Mark</th>
+<th>Member</th>
+<th>Dia (mm)</th>
+<th>Qty</th>
+<th>Cutting Length (m)</th>
+<th>Total Length (m)</th>
+<th>Weight (kg)</th>
+<th>Action</th>
+
+</tr>
+
+
+
+<tr class="bbsRow">
+
+
+<td>
+<input type="text" class="mark"
+value="B1">
+</td>
+
+
+<td>
+<select class="member">
+
+<option>Beam</option>
+<option>Column</option>
+<option>Slab</option>
+<option>Footing</option>
+<option>Stair</option>
 
 </select>
-</div>
+</td>
+
+
+<td>
+
+<select class="dia">
+
+<option value="6">6</option>
+<option value="8">8</option>
+<option value="10">10</option>
+<option value="12">12</option>
+<option value="16">16</option>
+<option value="20">20</option>
+<option value="25">25</option>
+<option value="32">32</option>
+
+</select>
+
+</td>
+
+
+<td>
+<input type="number"
+class="qty"
+value="1">
+</td>
 
 
 
-<div class="form-group">
-
-<label>Number of Bars</label>
-
-<input type="number" id="bars"
-placeholder="Enter number of bars">
-
-</div>
+<td>
+<input type="number"
+class="length"
+value="1">
+</td>
 
 
 
-<div class="form-group">
-
-<label>Length of One Bar (meter)</label>
-
-<input type="number" id="length"
-placeholder="Enter bar length">
-
-</div>
+<td class="totalLength">
+0
+</td>
 
 
-
-<div class="form-group">
-
-<label>Steel Rate (₹ per kg)</label>
-
-<input type="number" id="steelRate"
-placeholder="Enter steel rate">
-
-</div>
+<td class="weight">
+0
+</td>
 
 
+<td>
+<button class="btn btn-danger"
+onclick="deleteRow(this)">
+Delete
+</button>
+</td>
 
-<button class="btn" onclick="calculateBBS()">
-Calculate BBS
+
+</tr>
+
+
+</table>
+
+
+
+<br>
+
+
+<button class="btn"
+onclick="addRow()">
+➕ Add Bar
 </button>
 
 
-<button class="btn btn-warning" onclick="resetBBS()">
-Reset
+<button class="btn btn-success"
+onclick="calculateBBS()">
+Calculate
 </button>
 
 
-<button class="btn btn-success" onclick="printReport()">
+<button class="btn"
+onclick="printReport()">
 Print
-</button>
-
-
-<button class="btn" onclick="downloadBBS()">
-Download Report
 </button>
 
 
 
 <div class="result">
 
-<h3>BBS Result</h3>
+
+<h3>BBS Summary</h3>
 
 
 <p>
-Unit Weight:
-<strong id="unitWeight">-</strong>
-</p>
-
-
-<p>
-Total Bar Length:
-<strong id="totalLength">-</strong>
+Total Length:
+<strong id="grandLength">
+0 m
+</strong>
 </p>
 
 
 <p>
 Total Steel Weight:
-<strong id="totalWeight">-</strong>
-</p>
-
-
-<p>
-Steel Cost:
-<strong id="steelCost">-</strong>
+<strong id="grandWeight">
+0 kg
+</strong>
 </p>
 
 
 </div>
 
 
+
 </div>
+
+
 
 
 
@@ -151,66 +228,22 @@ Steel Cost:
 
 <table>
 
+
 <tr>
 <th>Formula</th>
-<th>Description</th>
+<th>Meaning</th>
 </tr>
 
 
 <tr>
 <td>D² / 162</td>
-<td>
-Weight of steel per meter (kg/m)
-</td>
+<td>Steel unit weight kg/m</td>
 </tr>
 
 
 <tr>
-<td>Total Weight</td>
-<td>
-Unit Weight × Total Length
-</td>
-</tr>
-
-
-</table>
-
-
-<br>
-
-
-<h2>Example</h2>
-
-
-<table>
-
-<tr>
-<th>Parameter</th>
-<th>Value</th>
-</tr>
-
-
-<tr>
-<td>Diameter</td>
-<td>12 mm</td>
-</tr>
-
-
-<tr>
-<td>Unit Weight</td>
-<td>12² / 162 = 0.888 kg/m</td>
-</tr>
-
-
-<tr>
-<td>Length</td>
-<td>100 m</td>
-</tr>
-
-
-<tr>
-<td>Total Steel</td>
-<td>88.8 kg</td>
+<td>Total Length × Unit Weight</td>
+<td>Total reinforcement weight</td>
 </tr>
 
 
@@ -220,17 +253,17 @@ Unit Weight × Total Length
 </div>
 
 
+
 </div>
+
 
 
 
 <footer>
 
-<h3>Civil Engineering Calculator Suite</h3>
-
-<p>
-BBS Calculator | Steel Quantity | Cost Calculation
-</p>
+Civil Engineering Calculator Suite  
+<br>
+Professional BBS Module
 
 </footer>
 
