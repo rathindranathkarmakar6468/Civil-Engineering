@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BBS Calculator - Civil Engineering Tools</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+    <h1>📏 Bar Bending Schedule (BBS) Calculator</h1>
+    <p>Calculate reinforcement steel length, weight and cost</p>
+</header>
+
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="bbs.html">BBS</a>
+    <a href="cost.html">Cost Estimation</a>
+</nav>
+
+
+<div class="container">
+
+<div class="calculator">
+
+<h2>BBS Input Details</h2>
+
+
+<div class="form-group">
+<label>Bar Diameter (mm)</label>
+
+<select id="diameter">
+
+<option value="">Select Diameter</option>
+<option value="6">6 mm</option>
+<option value="8">8 mm</option>
+<option value="10">10 mm</option>
+<option value="12">12 mm</option>
+<option value="16">16 mm</option>
+<option value="20">20 mm</option>
+<option value="25">25 mm</option>
+<option value="32">32 mm</option>
+
+</select>
+</div>
+
+
+
+<div class="form-group">
+
+<label>Number of Bars</label>
+
+<input type="number" id="bars"
+placeholder="Enter number of bars">
+
+</div>
+
+
+
+<div class="form-group">
+
+<label>Length of One Bar (meter)</label>
+
+<input type="number" id="length"
+placeholder="Enter bar length">
+
+</div>
+
+
+
+<div class="form-group">
+
+<label>Steel Rate (₹ per kg)</label>
+
+<input type="number" id="steelRate"
+placeholder="Enter steel rate">
+
+</div>
+
+
+
+<button class="btn" onclick="calculateBBS()">
+Calculate BBS
+</button>
+
+
+<button class="btn btn-warning" onclick="resetBBS()">
+Reset
+</button>
+
+
+<button class="btn btn-success" onclick="printReport()">
+Print
+</button>
+
+
+<button class="btn" onclick="downloadBBS()">
+Download Report
+</button>
+
+
+
+<div class="result">
+
+<h3>BBS Result</h3>
+
+
+<p>
+Unit Weight:
+<strong id="unitWeight">-</strong>
+</p>
+
+
+<p>
+Total Bar Length:
+<strong id="totalLength">-</strong>
+</p>
+
+
+<p>
+Total Steel Weight:
+<strong id="totalWeight">-</strong>
+</p>
+
+
+<p>
+Steel Cost:
+<strong id="steelCost">-</strong>
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="calculator" style="margin-top:30px">
+
+
+<h2>Steel Weight Formula</h2>
+
+
+<table>
+
+<tr>
+<th>Formula</th>
+<th>Description</th>
+</tr>
+
+
+<tr>
+<td>D² / 162</td>
+<td>
+Weight of steel per meter (kg/m)
+</td>
+</tr>
+
+
+<tr>
+<td>Total Weight</td>
+<td>
+Unit Weight × Total Length
+</td>
+</tr>
+
+
+</table>
+
+
+<br>
+
+
+<h2>Example</h2>
+
+
+<table>
+
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+
+
+<tr>
+<td>Diameter</td>
+<td>12 mm</td>
+</tr>
+
+
+<tr>
+<td>Unit Weight</td>
+<td>12² / 162 = 0.888 kg/m</td>
+</tr>
+
+
+<tr>
+<td>Length</td>
+<td>100 m</td>
+</tr>
+
+
+<tr>
+<td>Total Steel</td>
+<td>88.8 kg</td>
+</tr>
+
+
+</table>
+
+
+</div>
+
+
+</div>
+
+
+
+<footer>
+
+<h3>Civil Engineering Calculator Suite</h3>
+
+<p>
+BBS Calculator | Steel Quantity | Cost Calculation
+</p>
+
+</footer>
+
+
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
