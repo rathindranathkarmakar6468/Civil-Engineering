@@ -1,0 +1,451 @@
+/* ===============================
+   GENERAL PAGE STYLE
+=============================== */
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f2f5f8;
+    color:#222;
+}
+
+
+/* ===============================
+   HEADER
+=============================== */
+
+.header{
+    background:#004d80;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+.header h1{
+    margin:0;
+    font-size:32px;
+}
+
+.header p{
+    margin-top:10px;
+    font-size:18px;
+}
+
+
+
+
+
+/* ===============================
+   SECTION
+=============================== */
+
+.bbs-section{
+    background:white;
+    margin:25px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px #ccc;
+}
+
+
+.bbs-section h2{
+    background:#006699;
+    color:white;
+    padding:10px;
+    border-radius:5px;
+}
+
+
+
+
+
+/* ===============================
+   TABLE
+=============================== */
+
+.table-container{
+    width:100%;
+    overflow-x:auto;
+}
+
+
+.bbs-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:1800px;
+}
+
+
+.bbs-table th{
+
+    background:#003d66;
+    color:white;
+    padding:8px;
+    border:1px solid #aaa;
+    font-size:14px;
+
+}
+
+
+.bbs-table td{
+
+    border:1px solid #aaa;
+    padding:5px;
+    text-align:center;
+
+}
+
+
+.bbs-table input,
+.bbs-table select{
+
+    width:100%;
+    padding:6px;
+    font-size:14px;
+    border:1px solid #999;
+    border-radius:4px;
+
+}
+
+
+
+.bbs-table input:read-only{
+
+    background:#eeeeee;
+    color:#333;
+
+}
+
+
+
+
+
+/* ===============================
+   BUTTONS
+=============================== */
+
+button{
+
+    background:#008000;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    margin:10px;
+    font-size:16px;
+    font-weight:bold;
+    border-radius:6px;
+    cursor:pointer;
+
+}
+
+
+button:hover{
+
+    background:#005900;
+
+}
+
+
+
+
+
+/* ===============================
+   EXPORT BUTTON
+=============================== */
+
+
+.export-section{
+
+    width:100%;
+    text-align:center;
+    margin:40px 0;
+
+}
+
+
+
+.export-btn{
+
+    background:#0066cc;
+    color:white;
+    font-size:22px;
+    font-weight:bold;
+    padding:18px 55px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+
+}
+
+
+.export-btn:hover{
+
+    background:#004080;
+
+}
+
+
+
+
+
+/* ===============================
+   BAR SHAPE PREVIEW
+=============================== */
+
+
+.shape-preview{
+
+    width:80px;
+    height:50px;
+    margin:10px auto;
+    position:relative;
+
+}
+
+
+
+/* Straight Bar */
+
+.straight-shape::before{
+
+    content:"";
+    position:absolute;
+    width:70px;
+    height:5px;
+    background:black;
+    top:22px;
+    left:5px;
+
+}
+
+
+
+
+
+/* L Shape */
+
+.l-shape::before{
+
+    content:"";
+    position:absolute;
+    width:50px;
+    height:40px;
+    border-left:5px solid black;
+    border-bottom:5px solid black;
+    left:15px;
+    top:5px;
+
+}
+
+
+
+
+
+/* U Shape */
+
+.u-shape::before{
+
+    content:"";
+    position:absolute;
+    width:55px;
+    height:35px;
+    border:5px solid black;
+    border-top:none;
+    left:12px;
+    top:5px;
+
+}
+
+
+
+
+
+/* Bent Bar */
+
+.bent-shape::before{
+
+    content:"";
+    position:absolute;
+    width:45px;
+    height:35px;
+    border-right:5px solid black;
+    border-bottom:5px solid black;
+    left:15px;
+    top:5px;
+
+}
+
+
+
+
+
+/* Rectangular Stirrup */
+
+.rect-stirrup::before{
+
+    content:"";
+    position:absolute;
+    width:55px;
+    height:35px;
+    border:5px solid black;
+    left:12px;
+    top:5px;
+
+}
+
+
+
+
+
+/* Circular Ring */
+
+.ring-shape::before{
+
+    content:"";
+    position:absolute;
+    width:35px;
+    height:35px;
+    border:5px solid black;
+    border-radius:50%;
+    left:20px;
+    top:5px;
+
+}
+
+
+
+
+
+/* Spiral */
+
+.spiral-shape::before{
+
+    content:"";
+    position:absolute;
+    width:40px;
+    height:40px;
+    border:5px dashed black;
+    border-radius:50%;
+    left:18px;
+    top:5px;
+
+}
+
+
+
+
+
+/* Two Leg Stirrup */
+
+.two-leg-stirrup::before{
+
+    content:"";
+    position:absolute;
+    width:50px;
+    height:35px;
+    border:5px solid black;
+    left:15px;
+    top:5px;
+
+}
+
+.two-leg-stirrup::after{
+
+    content:"";
+    position:absolute;
+    height:35px;
+    border-left:5px solid black;
+    left:40px;
+    top:5px;
+
+}
+
+
+
+
+
+/* Four Leg Stirrup */
+
+.four-leg-stirrup::before{
+
+    content:"";
+    position:absolute;
+    width:50px;
+    height:35px;
+    border:5px solid black;
+    left:15px;
+    top:5px;
+
+}
+
+.four-leg-stirrup::after{
+
+    content:"";
+    position:absolute;
+    height:35px;
+    border-left:5px solid black;
+    border-right:5px solid black;
+    width:15px;
+    left:30px;
+    top:5px;
+
+}
+
+
+
+
+
+/* ===============================
+   FOOTER
+=============================== */
+
+
+footer{
+
+    background:#003d66;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:30px;
+
+}
+
+
+
+
+
+/* ===============================
+   MOBILE VIEW
+=============================== */
+
+
+@media(max-width:768px){
+
+.header h1{
+
+    font-size:22px;
+
+}
+
+
+.bbs-section{
+
+    margin:10px;
+    padding:10px;
+
+}
+
+
+button{
+
+    width:90%;
+
+}
+
+
+}
