@@ -1,92 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Civil BBS Calculator</title>
 <link rel="stylesheet" href="bbs.css">
 </head>
+
 <body>
+
 <header class="header">
 <h1>BAR BENDING SCHEDULE (BBS)</h1>
 <p>Civil Reinforcement Steel Calculation System</p>
 </header>
+
+
 <section class="bbs-section">
+
 <h2>1. FOOTING BBS</h2>
+
 <div class="table-container">
+
 <table class="bbs-table">
+
 <thead>
+
 <tr>
+
 <th>Bar Mark</th>
 <th>Bar Description</th>
 <th>Shape of Bar</th>
+
 <th>Diameter<br>(mm)</th>
+
 <th>Spacing<br>(mm)</th>
+
 <th>Straight Length<br>(mm)</th>
+
 <th>Bend Height<br>(mm)</th>
+
 <th>No. of Bends</th>
-<th>Less for Bending Correction<br>(2.5D)</th>
+
+<th>Bending Correction</th>
+
 <th>Lap Length<br>(mm)</th>
+
 <th>No. of Laps</th>
+
 <th>Overall Length<br>(mm)</th>
+
 <th>No. of Bars per Set</th>
+
 <th>No. of Sets</th>
+
 <th>Total No. of Bars</th>
+
 <th>Total Length<br>(m)</th>
+
 <th>Unit Weight<br>(kg/m)</th>
+
 <th>Total Steel Weight<br>(kg)</th>
+
 </tr>
+
 </thead>
+
+
 <tbody id="footingBody">
+
+
 <tr>
-<td><input type="text" value="F1"></td>
-<td><input type="text" value="Footing Main Bar"></td>
+
+
 <td>
+<input type="text" value="F1">
+</td>
+
+
+<td>
+<input type="text" value="Footing Main Bar">
+</td>
+
+
+<td>
+
 <select class="bar-shape" onchange="changeBarShape(this)">
-<option value="straight">Straight Bar</option>
-<option value="l">L Bar</option>
-<option value="u">U Bar</option>
-<option value="bent">Bent Bar</option>
+
+<option value="straight">
+Straight Bar
+</option>
+
+<option value="l">
+L Bar
+</option>
+
+<option value="u">
+U Bar
+</option>
+
+<option value="bent">
+Bent Bar
+</option>
+
 </select>
+
+
 <div class="shape-preview straight-shape"></div>
+
 </td>
-<td><input type="number"></td>
-<td><input type="number"></td>
-<td><input type="number"></td>
-<td><input type="number"></td>
-<td><input type="number" value="2"></td>
+
+
+
 <td>
-<select class="bend-correction" onchange="calculateBendCorrection(this)">
-<option value="0">Select Bend</option>
-<option value="1">45° Bend - 1d</option>
-<option value="2">90° Bend - 2d</option>
-<option value="3">135° Bend - 3d</option>
-<option value="4">180° Bend - 4d</option>
-</select>
-<input type="number" class="bend-correction-value" readonly>
+<input type="number"
+oninput="calculateRow(this.closest('tr'))">
 </td>
-<td><input type="number"></td>
-<td><input type="number" value="0"></td>
-<td><input type="number" readonly></td>
-<td><input type="number"></td>
-<td><input type="number" value="1"></td>
-<td><input type="number" readonly></td>
-<td><input type="number" readonly></td>
-<td><input type="number" readonly></td>
-<td><input type="number" readonly></td>
+
+
+<td>
+<input type="number">
+</td>
+
+
+<td>
+<input type="number"
+oninput="calculateRow(this.closest('tr'))">
+</td>
+
+
+<td>
+<input type="number"
+oninput="calculateRow(this.closest('tr'))">
+</td>
+
+
+<td>
+<input type="number"
+value="2"
+oninput="calculateRow(this.closest('tr'))">
+</td>
+
+
+
+<td>
+
+
+<select class="bend-correction"
+onchange="
+calculateBendCorrection(this);
+calculateRow(this.closest('tr'))
+">
+
+
+<option value="0">
+Select Bend
+</option>
+
+
+<option value="1">
+45° Bend - 1D
+</option>
+
+
+<option value="2">
+90° Bend - 2D
+</option>
+
+
+<option value="3">
+135° Bend - 3D
+</option>
+
+
+<option value="4">
+180° Bend - 4D
+</option>
+
+
+</select>
+
+
+<input type="number"
+class="bend-correction-value"
+readonly>
+
+
+</td>
+
+
+
+<td>
+<input type="number">
+</td>
+
+
+
+<td>
+<input type="number"
+value="0">
+</td>
+
+
+
+<td>
+<input type="number"
+readonly>
+</td>
+
+
+
+<td>
+<input type="number">
+</td>
+
+
+
+<td>
+<input type="number"
+value="1">
+</td>
+
+
+
+<td>
+<input type="number"
+readonly>
+</td>
+
+
+
+<td>
+<input type="number"
+readonly>
+</td>
+
+
+
+<td>
+<input type="number"
+readonly>
+</td>
+
+
+
+<td>
+<input type="number"
+readonly>
+</td>
+
+
+
 </tr>
+
+
 </tbody>
+
 </table>
+
 </div>
-<button onclick="addFootingRow()">Add More</button>
-<button onclick="calculateFooting()">Calculate Footing</button>
+
+
+
+<button onclick="addFootingRow()">
+Add More
+</button>
+
+
+<button onclick="calculateFooting()">
+Calculate Footing
+</button>
+
+
 </section>
 <section class="bbs-section">
+
 <h2>2. COLUMN BBS</h2>
+
 <div class="table-container">
+
 <table class="bbs-table">
+
 <thead>
+
 <tr>
+
 <th>Bar Mark</th>
 <th>Bar Description</th>
 <th>Shape of Bar</th>
@@ -95,7 +293,7 @@
 <th>Straight Length<br>(mm)</th>
 <th>Bend Height<br>(mm)</th>
 <th>No. of Bends</th>
-<th>Less for Bending Correction<br>(2.5D)</th>
+<th>Bending Correction</th>
 <th>Lap Length<br>(mm)</th>
 <th>No. of Laps</th>
 <th>Overall Length<br>(mm)</th>
@@ -105,59 +303,235 @@
 <th>Total Length<br>(m)</th>
 <th>Unit Weight<br>(kg/m)</th>
 <th>Total Steel Weight<br>(kg)</th>
+
 </tr>
+
 </thead>
+
+
 <tbody id="columnBody">
+
+
 <tr>
-<td><input type="text" value="C1"></td>
-<td><input type="text" value="Column Main Bar"></td>
+
+
 <td>
-<select class="bar-shape" onchange="changeBarShape(this)">
-<option value="straight">Straight Bar</option>
-<option value="l">L Bar</option>
-<option value="rect-stirrup">Rectangular Closed Stirrup</option>
-<option value="ring">Circular Ring</option>
-<option value="spiral">Spiral Bar</option>
+<input type="text" value="C1">
+</td>
+
+
+<td>
+<input type="text" value="Column Main Bar">
+</td>
+
+
+
+<td>
+
+<select class="bar-shape"
+onchange="changeBarShape(this)">
+
+
+<option value="straight">
+Straight Bar
+</option>
+
+
+<option value="l">
+L Bar
+</option>
+
+
+<option value="rect-stirrup">
+Rectangular Closed Stirrup
+</option>
+
+
+<option value="ring">
+Circular Ring
+</option>
+
+
+<option value="spiral">
+Spiral Bar
+</option>
+
+
 </select>
+
+
 <div class="shape-preview straight-shape"></div>
+
+
 </td>
-<td><input type="number"></td>
-<td><input type="number"></td>
-<td><input type="number"></td>
-<td><input type="number"></td>
-<td><input type="number" value="2"></td>
+
+
+
 <td>
-<select class="bend-correction" onchange="calculateBendCorrection(this)">
-<option value="0">Select Bend</option>
-<option value="1">45° Bend - 1d</option>
-<option value="2">90° Bend - 2d</option>
-<option value="3">135° Bend - 3d</option>
-<option value="4">180° Bend - 4d</option>
-</select>
-<input type="number" class="bend-correction-value" readonly>
+<input type="number"
+oninput="calculateRow(this.closest('tr'))">
 </td>
-<td><input type="number"></td>
-<td><input type="number" value="0"></td>
-<td><input type="number" readonly></td>
-<td><input type="number"></td>
-<td><input type="number" value="1"></td>
-<td><input type="number" readonly></td>
-<td><input type="number" readonly></td>
-<td><input type="number" readonly></td>
-<td><input type="number" readonly></td>
+
+
+<td>
+<input type="number">
+</td>
+
+
+<td>
+<input type="number"
+oninput="calculateRow(this.closest('tr'))">
+</td>
+
+
+<td>
+<input type="number"
+oninput="calculateRow(this.closest('tr'))">
+</td>
+
+
+<td>
+<input type="number"
+value="2"
+oninput="calculateRow(this.closest('tr'))">
+</td>
+
+
+
+<td>
+
+
+<select class="bend-correction"
+onchange="
+calculateBendCorrection(this);
+calculateRow(this.closest('tr'))
+">
+
+
+<option value="0">
+Select Bend
+</option>
+
+
+<option value="1">
+45° Bend - 1D
+</option>
+
+
+<option value="2">
+90° Bend - 2D
+</option>
+
+
+<option value="3">
+135° Bend - 3D
+</option>
+
+
+<option value="4">
+180° Bend - 4D
+</option>
+
+
+</select>
+
+
+<input type="number"
+class="bend-correction-value"
+readonly>
+
+
+</td>
+
+
+
+<td>
+<input type="number">
+</td>
+
+
+<td>
+<input type="number"
+value="0">
+</td>
+
+
+<td>
+<input type="number"
+readonly>
+</td>
+
+
+<td>
+<input type="number">
+</td>
+
+
+<td>
+<input type="number"
+value="1">
+</td>
+
+
+<td>
+<input type="number"
+readonly>
+</td>
+
+
+<td>
+<input type="number"
+readonly>
+</td>
+
+
+<td>
+<input type="number"
+readonly>
+</td>
+
+
+<td>
+<input type="number"
+readonly>
+</td>
+
+
+
 </tr>
+
+
 </tbody>
+
 </table>
+
 </div>
-<button onclick="addColumnRow()">Add More</button>
-<button onclick="calculateColumn()">Calculate Column</button>
+
+
+
+<button onclick="addColumnRow()">
+Add More
+</button>
+
+
+<button onclick="calculateColumn()">
+Calculate Column
+</button>
+
+
 </section>
 <section class="bbs-section">
+
 <h2>3. BEAM BBS</h2>
+
 <div class="table-container">
+
 <table class="bbs-table">
+
 <thead>
+
 <tr>
+
 <th>Bar Mark</th>
 <th>Bar Description</th>
 <th>Shape of Bar</th>
@@ -166,7 +540,7 @@
 <th>Straight Length<br>(mm)</th>
 <th>Bend Height<br>(mm)</th>
 <th>No. of Bends</th>
-<th>Less for Bending Correction<br>(2.5D)</th>
+<th>Bending Correction</th>
 <th>Lap Length<br>(mm)</th>
 <th>No. of Laps</th>
 <th>Overall Length<br>(mm)</th>
@@ -176,64 +550,254 @@
 <th>Total Length<br>(m)</th>
 <th>Unit Weight<br>(kg/m)</th>
 <th>Total Steel Weight<br>(kg)</th>
+
 </tr>
+
 </thead>
+
+
 <tbody id="beamBody">
+
+
 <tr>
-<td><input type="text" value="B1"></td>
-<td><input type="text" value="Beam Main Bar"></td>
+
+
 <td>
-<select class="bar-shape" onchange="changeBarShape(this)">
-<option value="straight">Straight Bar</option>
-<option value="l">L Bar</option>
-<option value="u">U Bar</option>
-<option value="bent">Bent Bar</option>
-<option value="closed-stirrup">Closed Stirrup</option>
-<option value="two-leg-stirrup">Two Legged Stirrup</option>
-<option value="four-leg-stirrup">Four Legged Stirrup</option>
+<input type="text" value="B1">
+</td>
+
+
+<td>
+<input type="text" value="Beam Main Bar">
+</td>
+
+
+
+<td>
+
+<select class="bar-shape"
+onchange="changeBarShape(this)">
+
+
+<option value="straight">
+Straight Bar
+</option>
+
+
+<option value="l">
+L Bar
+</option>
+
+
+<option value="u">
+U Bar
+</option>
+
+
+<option value="bent">
+Bent Bar
+</option>
+
+
+<option value="closed-stirrup">
+Closed Stirrup
+</option>
+
+
+<option value="two-leg-stirrup">
+Two Legged Stirrup
+</option>
+
+
+<option value="four-leg-stirrup">
+Four Legged Stirrup
+</option>
+
+
 </select>
+
+
 <div class="shape-preview straight-shape"></div>
+
+
 </td>
-<td><input type="number"></td>
-<td><input type="number"></td>
-<td><input type="number"></td>
-<td><input type="number"></td>
-<td><input type="number" value="2"></td>
+
+
+
+
 <td>
-<select class="bend-correction" onchange="calculateBendCorrection(this)">
-<option value="0">Select Bend</option>
-<option value="1">45° Bend - 1d</option>
-<option value="2">90° Bend - 2d</option>
-<option value="3">135° Bend - 3d</option>
-<option value="4">180° Bend - 4d</option>
-</select>
-<input type="number" class="bend-correction-value" readonly>
+<input type="number"
+oninput="calculateRow(this.closest('tr'))">
 </td>
-<td><input type="number"></td>
-<td><input type="number" value="0"></td>
-<td><input type="number" readonly></td>
-<td><input type="number"></td>
-<td><input type="number" value="1"></td>
-<td><input type="number" readonly></td>
-<td><input type="number" readonly></td>
-<td><input type="number" readonly></td>
-<td><input type="number" readonly></td>
+
+
+<td>
+<input type="number">
+</td>
+
+
+<td>
+<input type="number"
+oninput="calculateRow(this.closest('tr'))">
+</td>
+
+
+<td>
+<input type="number"
+oninput="calculateRow(this.closest('tr'))">
+</td>
+
+
+<td>
+<input type="number"
+value="2"
+oninput="calculateRow(this.closest('tr'))">
+</td>
+
+
+
+
+<td>
+
+
+<select class="bend-correction"
+onchange="
+calculateBendCorrection(this);
+calculateRow(this.closest('tr'))
+">
+
+
+<option value="0">
+Select Bend
+</option>
+
+
+<option value="1">
+45° Bend - 1D
+</option>
+
+
+<option value="2">
+90° Bend - 2D
+</option>
+
+
+<option value="3">
+135° Bend - 3D
+</option>
+
+
+<option value="4">
+180° Bend - 4D
+</option>
+
+
+</select>
+
+
+<input type="number"
+class="bend-correction-value"
+readonly>
+
+
+</td>
+
+
+
+
+<td>
+<input type="number">
+</td>
+
+
+<td>
+<input type="number"
+value="0">
+</td>
+
+
+<td>
+<input type="number"
+readonly>
+</td>
+
+
+<td>
+<input type="number">
+</td>
+
+
+<td>
+<input type="number"
+value="1">
+</td>
+
+
+<td>
+<input type="number"
+readonly>
+</td>
+
+
+<td>
+<input type="number"
+readonly>
+</td>
+
+
+<td>
+<input type="number"
+readonly>
+</td>
+
+
+<td>
+<input type="number"
+readonly>
+</td>
+
+
+
 </tr>
+
+
 </tbody>
+
 </table>
+
 </div>
-<button onclick="addBeamRow()">Add More</button>
-<button onclick="calculateBeam()">Calculate Beam</button>
+
+
+<button onclick="addBeamRow()">
+Add More
+</button>
+
+
+<button onclick="calculateBeam()">
+Calculate Beam
+</button>
+
+
 </section>
-<!-- ================= EXPORT BUTTON ================= -->
+
+
+
+
+<!-- EXPORT -->
 
 <div class="export-section">
-<button class="export-btn" onclick="exportBBS()">
+
+<button class="export-btn"
+onclick="exportBBS()">
+
 Export BBS Calculation
+
 </button>
+
 </div>
 
-<!-- ================= FOOTER ================= -->
+
+
 
 <footer>
 
@@ -241,6 +805,13 @@ Export BBS Calculation
 © 2026 Civil BBS Calculator
 </p>
 
-</footer><script src="bbs.js"></script>
+</footer>
+
+
+
+<script src="bbs.js"></script>
+
+
 </body>
+
 </html>
